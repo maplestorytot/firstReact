@@ -9,6 +9,14 @@ in index.js, <div id="root"> renders App (App.js)
 index.css/app.css are global styling
 
 
+#note about git
+if creating a project and want to push to a remote repository
+in terminal
+1) git init
+2) go to github create repository
+3) commit changes 
+4) git remote add origin https://github.com/maplestorytot/firstReact.git
+5)push to changes  or git push -u origin master
 
 #How does JSX work:::
 1 and 2 are equivalent but jsx code 1 basically is compiled into 2
@@ -241,3 +249,4 @@ first: summary on media queries) in a css class
 
 
 
+#css modules...

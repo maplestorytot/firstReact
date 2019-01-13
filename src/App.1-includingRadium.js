@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
+import Radium, { StyleRoot } from "radium";
 
 class App extends Component {
   //state only for components with extends components
@@ -64,6 +65,10 @@ class App extends Component {
   };
   render() {
     const style = {
+      ":hover": {
+        backgroundColor: "lightgreen",
+        color: "black"
+      },
       backgroundColor: "green",
       color: "white",
       font: "inherit",
@@ -128,6 +133,7 @@ class App extends Component {
     }
 
     return (
+      <StyleRoot>
         <div className="App">
           <h1>hey this is my react App</h1>
           <p className={classes.join(" ")}> this is really working </p>
@@ -138,6 +144,7 @@ class App extends Component {
           </button>
           {persons}
         </div>
+      </StyleRoot>
     );
 
     //'div' is what kind of html, second is adding styling, third is text inside it
@@ -146,4 +153,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
