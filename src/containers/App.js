@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import "./App.css";
-import Person from "./Person/Person";
-
+import classes from "./App.css";
+import Persons from "../components/Persons/Persons";
+import Cockpit from '../components/Cockpit/Cockpit'
 class App extends Component {
   //state only for components with extends components
   // if state changes, it will rerender the render()
@@ -63,14 +63,6 @@ class App extends Component {
     this.setState({ persons: persons });
   };
   render() {
-    const style = {
-      backgroundColor: "green",
-      color: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer"
-    };
 
     //conditionally add html
     let persons = null;
@@ -78,64 +70,19 @@ class App extends Component {
     // use function here to do conditional check, then add html to main return
     if (this.state.showPersons) {
       // to change styles dynamically, place within the if statement somewhere, and then just change properties of the style const
-      style.backgroundColor = "red";
-      style[":hover"] = {
-        backgroundColor: "salmon",
-        color: "black"
-      };
       persons = (
-        <div>
-          {/* using map function to take each element (person) from array (persons), and returning 
-            html  */}
-          {this.state.persons.map((person, index) => {
-            // creating css class list by making a string
-            return (
-              <Person
-                //add a key property so that when the dom and virutal dom are being compared
-                //it knows to search by id difference so that it only changes the specific
-                //part of the dom and doesn't rerender the entire thing
-                key={person.id}
-                click={this.deletePersonHandler.bind(this, index)}
-                name={person.name}
-                age={person.age}
-                changed={event => {
-                  this.nameChangedHandler(event, person.id);
-                }}
-              />
-            );
-          })}
-          {/* <Person 
-            // bind is to add argument to the function, this refers to class
-            click={this.switchNameHandler.bind(this, "loser")}
-            name={this.state.persons[0].name} 
-            age={this.state.persons[0].age}/>
-            <Person 
-            changed={this.nameChangedHandler}
-            name={this.state.persons[1].name} 
-            age={this.state.persons[1].age}>my hobbies</Person>
-            <Person 
-            name={this.state.persons[2].name} 
-            age={this.state.persons[2].age}></Person> */}
-        </div>
+          <Persons persons={this.state.persons}
+           clicked={this.deletePersonHandler} 
+           changed={this.nameChangedHandler}
+          ></Persons>
       );
     }
-    let classes = [];
-    if (this.state.persons.length <= 2) {
-      classes.push("red");
-    }
-    if (this.state.persons.length <= 1) {
-      classes.push("bold");
-    }
-
+   
     return (
-        <div className="App">
-          <h1>hey this is my react App</h1>
-          <p className={classes.join(" ")}> this is really working </p>
-          {/* don't add this.switchnamehandler() because will run automatically  */}
-          {/*()=>this.switchnamehandler('other way to add arguments to functions') */}
-          <button style={style} onClick={this.togglePersonHandler}>
-            Switch Name
-          </button>
+        <div className={classes.App}>
+          <Cockpit showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          clicked={this.togglePersonHandler}/>
           {persons}
         </div>
     );

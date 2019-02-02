@@ -249,4 +249,71 @@ first: summary on media queries) in a css class
 
 
 
-#css modules...
+#css modules...With CSS modules, you can write normal CSS code and make sure, that it only applies to a given component.
+
+It's not using magic for that, instead it'll simply automatically generate unique CSS class names for you. 
+
+1)npm run eject
+2) in config/webpack.config.js
+edit cssRegex:
+ {
+  test: cssRegex,
+  exclude: cssModuleRegex,
+  use: getStyleLoaders({
+      importLoaders: 1,
+      modules: true,
+      localIdentName: '[name]__[local]__[hash:base64:5]'
+  }),
+}
+3) in app.js import classes from "./App.css";
+4) in any html: <div className={classes.App}>
+summary: making it so that the css classes are unique to 
+
+
+how to use: css classes  
+1) to add specifics to classes
+.App button{
+    background-color: green;
+    color: white;
+    font: inherit;
+    border: 1px solid blue;
+    padding: 16px;
+    cursor: pointer; 
+}
+2) can add classes conditionally by making a string for the btnClasses and then setting like so;
+      let btnClass="";
+
+    
+    if (this.state.showPersons) {
+      // to change styles dynamically, place within the if statement somewhere, and then just change properties of the style const
+      // here it creates a string that was access from app.css's red class for buttons 
+      <.App button.Red{
+  background-color:red;
+
+}>
+      <btnClass=classes.Red;
+3)           <button className={btnClass} onClick={this.togglePersonHandler}>
+
+
+Cssmodules with media queries
+1) add the media query inside the css file, 
+@media (min-width:500px){
+    .Person{
+        width:450px;
+    }
+}
+
+
+
+
+
+#DEBUGGING
+1) use source map to put in breakpoints
+2) react developer tool 
+3) using error boundaries:
+    -create errorboundary component: it basically will return html with the error message, it replaces
+    the component with the html error message
+    or - just display what it is wrapped around props.children
+    -<ErrorBoundary><Person>
+        -this is higher order component that will handle errors,
+        -move key to error boundary

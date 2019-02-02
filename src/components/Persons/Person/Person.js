@@ -1,5 +1,5 @@
 import React from "react";
-import "./Person.css";
+import classes from "./Person.css";
 //props from App.js <Person name='ryan' age='53'>
 const person = props => {
 
@@ -7,7 +7,7 @@ const person = props => {
 
   return (
     //   style will be appended to the css class based on @media condition
-    <div className="Person" style={style}>
+    <div className={classes.Person}>
       <p onClick={props.click}>
         I'm {props.name} and I am {props.age} old
       </p>

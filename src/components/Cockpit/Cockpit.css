@@ -1,0 +1,23 @@
+.Cockpit button{
+    background-color: green;
+    color: white;
+    font: inherit;
+    border: 1px solid blue;
+    padding: 16px;
+    cursor: pointer; 
+}
+
+.Cockpit button:hover{
+   background-color:lightgreen;
+   color:black;
+
+}
+/* adding css class to css class in button, called Red  */
+.Cockpit button.Red{
+  background-color:red;
+
+}
+.Cockpit button.Red:hover{
+  color:black;
+  background-color:salmon; 
+}
